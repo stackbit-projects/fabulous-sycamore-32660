@@ -1,0 +1,56 @@
+<section id="{{ .section.section_id }}" class="block posts-block bg-{{ .section.bg }} outer">
+  <div class="block-header inner-small">
+    {{ if .section.title }}
+    <h2 class="block-title">{{ .section.title }}</h2>
+    {{ end }}
+    {{ if .section.subtitle }}
+    <p class="block-subtitle">
+      {{ .section.subtitle | safeHTML }}
+    </p>
+    {{ end }}
+  </div><!-- .block-header -->
+  <div class="inner">
+    <div class="post-feed">
+      {{ $display_posts := ((.Site.GetPage "section" "/posts").Pages).ByDate.Reverse }}
+      {{ $recent_posts := $display_posts | first 3 }}
+      {{ range $post := $recent_posts }}
+      <article class="post post-card">
+        <div class="post-card-inside">
+          {{ if $post.Params.thumb_img_path }}
+          <a class="post-card-thumbnail" href="{{ $post.URL }}">
+            <img class="thumbnail" src="{{ $post.Params.thumb_img_path | relURL }}" alt="{{ $post.Params.title }}" />
+          </a>
+          {{ end }}
+          <div class="post-card-content">
+            <header class="post-header">
+              <h3 class="post-title"><a href="{{ $post.URL }}" rel="bookmark">{{ $post.Params.title }}</a></h3>
+            </header>
+            <div class="post-excerpt">
+              <p>{{ $post.Params.excerpt }}</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published"
+               datetime="{{ $post.Date | dateFormat "" }}">{{ $post.Date | dateFormat "" }} </time>
+            </footer>
+          </div><!-- .post-card-content -->
+        </div><!-- .post-card-inside -->
+      </article><!-- .post -->
+      {{ end }}
+    </div><!-- .post-feed -->
+  </div><!-- .inner -->   
+</section><!-- .block -->
+
+<section id="{{ .section.section_id }}" class="cta2-block bg-grey outer">
+  <div class="inner-large">
+    <div class="grid">
+      </div><!-- .block-content -->
+      {{ if .section.actions }}
+      <div class="cell block-buttons">
+        {{ range $action := .section.actions }}
+        <a href="{{ $action.url | relURL }}" class="button secondary">{{ $action.label }}</a>
+        {{ end }}
+      </div><!-- .block-buttons -->
+      {{ end }}
+    </div><!-- .grid -->
+  </div><!-- .inner -->
+</section><!-- .hero -->

@@ -1,0 +1,14 @@
+<section id="{{ .section.section_id }}" class="block cta2-block bg-white outer">
+  <div class="inner-large">
+    <div class="grid">
+      </div><!-- .block-content -->
+      {{ if .section.actions }}
+      <div class="cell block-buttons">
+        {{ range $action := .section.actions }}
+        <a href="{{ $action.url | relURL }}" class="button secondary">{{ $action.label }}</a>
+        {{ end }}
+      </div><!-- .block-buttons -->
+      {{ end }}
+    </div><!-- .grid -->
+  </div><!-- .inner -->
+</section><!-- .hero -->

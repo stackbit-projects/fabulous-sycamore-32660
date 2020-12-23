@@ -1,0 +1,67 @@
+{{ define "content" }}
+
+<div class="outer">
+  <div class="inner-medium">
+
+    <article class="post post-full">
+      <header class="post-header">
+        <h1 class="post-title">{{ .Params.title }}</h1>
+      </header><!-- .post-header -->
+      {{ if .Params.img_path }}
+      <div class="post-thumbnail">
+        <img src="{{ .Params.img_path | relURL }}" alt="{{ .Params.title }}" />
+      </div><!-- .post-thumbnail -->
+      {{ end }}
+      {{ if .Params.subtitle }}
+      <div class="post-subtitle">
+        {{ .Params.subtitle | safeHTML }}
+      </div><!-- .post-subtitle -->
+      {{ end }}
+      <div class="post-content">
+        {{ .Content }}
+      </div><!-- .post-content -->
+      <footer class="post-meta">
+        <time class="published"
+          datetime="{{ .Date | dateFormat "2006-01-02 15:04" }}">{{ .Date | dateFormat "Monday, January 2, 2006" }}</time>
+      </footer><!-- .post-meta -->
+    </article><!-- .post -->
+
+    <!-- Next/previous post navigation TBD -->
+    <!--
+    <nav class="read-next">
+      <h2 class="read-next-title">Read Next</h2>
+      <div class="post-feed">
+        <article class="post post-card">
+          <div class="post-card-inside">
+            <a class="post-card-thumbnail" href="#"><img src="#" alt="" /></a>
+            <div class="post-card-content">
+              <header class="post-header">
+                <h3 class="post-title"><a href="#" rel="bookmark">Previous Post Title</a></h3>
+              </header>
+              <footer class="post-meta">
+                <time class="published" datetime="">Previous post date</time>
+              </footer>
+            </div>
+          </div>
+        </article>
+        <article class="post post-card">
+          <div class="post-card-inside">
+            <a class="post-card-thumbnail" href="#"><img src="#" alt="" /></a>
+            <div class="post-card-content">
+              <header class="post-header">
+                <h3 class="post-title"><a href="#" rel="bookmark">Next Post Title</a></h3>
+              </header>
+              <footer class="post-meta">
+                <time class="published" datetime="">Next post date</time>
+              </footer>
+            </div>
+          </div>
+        </article>
+      </div>
+    </nav>
+    -->
+  
+  </div><!-- .inner-medium -->
+</div><!-- .outer-->
+
+{{ end }}

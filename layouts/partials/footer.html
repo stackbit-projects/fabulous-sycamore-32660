@@ -1,0 +1,70 @@
+<footer id="colophon" class="site-footer">
+  <div class="footer-top outer">
+    <div class="inner">
+      <div class="footer-widgets">
+
+        <div class="widget footer-branding">
+          {{ if .Site.Params.footer.logo_img }}
+          <p class="site-logo">
+            <a href='{{ "/" | relURL }}'><img src="{{ .Site.Params.footer.logo_img | relURL }}" alt="Logo" /></a>
+          </p>
+          {{ else }}
+          <p class="site-title">
+            <a href='{{ "/" | relURL }}'>{{ .Site.Params.header.title }}</a>
+          </p>
+          {{ end }}
+          {{ if .Site.Params.footer.tagline }}
+          <p class="site-description">
+            {{ .Site.Params.footer.tagline }}
+          </p>
+          {{ end }}
+        </div><!-- .widget -->
+
+        {{ if or (and .Site.Menus.secondary .Site.Params.footer.has_nav) .Site.Params.footer.has_social }}
+        <nav class="widget footer-navigation">
+          <div class="footer-nav-inside">
+            {{ if and .Site.Menus.secondary .Site.Params.footer.has_nav }}
+            <div class="secondary-nav">
+              <h2 class="widget-title">{{ .Site.Params.footer.nav_title }}</h2>
+              <ul class="secondary-menu">
+                {{ range $item := .Site.Menus.secondary }}
+                <li>
+                  <a href="{{ $item.URL | relURL }}">{{ $item.Name }}</a>
+                </li>
+                {{ end }}
+              </ul>
+            </div><!-- .secondary-nav -->
+            {{ end }}
+            {{ if .Site.Params.footer.has_social }}
+            <div class="social-nav">
+              <h2 class="widget-title">{{ .Site.Params.footer.social_title }}</h2>
+              {{ partial "social.html" . }}
+            </div><!-- .social-nav -->
+            {{ end }}
+          </div><!-- .footer-nav-inside -->
+        </nav><!-- .widget -->
+        {{ end }}
+        {{ if .Site.Params.footer.has_subscribe }}
+        <div class="widget footer-subscribe">
+          <h2 class="widget-title">{{ .Site.Params.footer.subscribe_title }}</h2>
+          {{ if .Site.Params.footer.subscribe_content }}
+          <p>{{ .Site.Params.footer.subscribe_content | safeHTML }}</p>
+          {{ end }}
+          {{ partial "subscribe_form.html" . }}
+        </div><!-- .widget -->
+        {{ end }}
+      </div><!-- .footer-widgets -->
+    </div><!-- .inner -->
+  </div><!-- .outer -->
+
+  <div class="site-info outer">
+    <div class="inner">
+      {{ .Site.Params.footer.content | safeHTML }}
+      &nbsp;
+      {{ range $link := .Site.Params.footer.links }}
+      <a href="{{ $link.url }}" {{ if $link.new_window }}target="_blank" rel="noopener" {{ end }}>{{ $link.text }}</a>.
+      {{ end }}
+    </div><!-- .inner -->
+  </div><!-- .site-info -->
+
+</footer><!-- .site-footer -->

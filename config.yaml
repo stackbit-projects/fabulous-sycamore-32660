@@ -1,0 +1,29 @@
+title: Autrement Saint Jean de Monts
+baseURL: /
+params:
+  footer:
+    subscribe_title: ''
+    subscribe_content: ''
+    has_subscribe: false
+    social_title: Suivez-nous
+    tagline: Développé par Netary
+    logo_img: /images/logo footer.png
+    has_social: true
+    content: '&copy; Netary. Tous droits réservés.'
+    links:
+      - new_window: true
+        text: Netary
+        url: 'https://netary.fr'
+    nav_title: Menu
+    has_nav: true
+  header:
+    has_nav: true
+    logo_img: /images/logo new color.png
+    title: Autrement Saint Jean de Monts
+    menu:
+      actions: []
+  palette: blue
+disableKinds:
+  - RSS
+  - taxonomy
+  - taxonomyTerm

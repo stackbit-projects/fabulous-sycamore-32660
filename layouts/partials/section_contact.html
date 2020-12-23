@@ -1,0 +1,42 @@
+{{ $section := .section }}
+<section id="{{ $section.section_id }}" class="block contact-block bg-{{ $section.bg }} outer">
+  <div class="block-header inner-small">
+    {{ if $section.title }}
+    <h2 class="block-title">{{ $section.title }}</h2>
+    {{ end }}
+    {{ if $section.subtitle }}
+    <p class="block-subtitle">
+      {{ $section.subtitle | safeHTML }}
+    </p>
+    {{ end }}
+  </div><!-- .block-header -->
+  <div class="block-content inner-medium">
+    {{ partial "markdownify-block" $section.content }}
+    <form name="contactForm" method="POST" netlify-honeypot="bot-field" data-netlify="true" action="/merci" id="contact-form"
+      class="contact-form">
+      <p class="screen-reader-text">
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+      <p class="form-row">
+        <label class="form-label">Nom</label>
+        <input type="text" name="lastname" class="form-input" required>
+      </p>
+      <p class="form-row">
+        <label class="form-label">Prénom</label>
+        <input type="text" name="firstname" class="form-input" required>
+      </p>
+      <p class="form-row">
+        <label class="form-label">Adresse Email</label>
+        <input type="email" name="email" class="form-input" required>
+      </p>
+      <p class="form-row">
+        <label class="form-label">Message</label>
+        <textarea name="message" class="form-textarea" rows="7"></textarea>
+      </p>
+      <input type="hidden" name="form-name" value="contactForm" />
+      <p class="form-row form-submit">
+        <button type="submit" class="button">Envoyer</button>
+      </p>
+    </form><!-- .contact-form -->
+  </div><!-- .block-content -->
+</section><!-- .outer-->

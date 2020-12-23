@@ -1,0 +1,23 @@
+<section id="{{ .section.section_id }}" class="block cta-block bg-cta outer">
+  <div class="inner-large">
+    <div class="grid">
+      <div class="cell block-content">
+        {{ if .section.title }}
+        <h2 class="block-title">{{ .section.title }}</h2>
+        {{ end }}
+        {{ if .section.subtitle }}
+        <p class="block-subtitle">
+          {{ .section.subtitle | safeHTML }}
+        </p>
+        {{ end }}
+      </div><!-- .block-content -->
+      {{ if .section.actions }}
+      <div class="cell block-buttons">
+        {{ range $action := .section.actions }}
+        <a href="{{ $action.url | relURL }}" class="button white large">{{ $action.label }}</a>
+        {{ end }}
+      </div><!-- .block-buttons -->
+      {{ end }}
+    </div><!-- .grid -->
+  </div><!-- .inner -->
+</section><!-- .hero -->

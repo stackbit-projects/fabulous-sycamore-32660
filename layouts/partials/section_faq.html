@@ -1,0 +1,31 @@
+<section id="{{ .section.section_id }}" class="block faq-block bg-{{ .section.bg }} outer">
+  <div class="inner-small">
+    <div class="block-header">
+      {{ if .section.title }}
+      <h2 class="block-title">{{ .section.title }}</h2>
+      {{ end }}
+      {{ if .section.subtitle }}
+      <p class="block-subtitle">
+        {{ .section.subtitle | safeHTML }}
+      </p>
+      {{ end }}
+    </div><!-- .block-header -->
+    {{ if .section.faqitems }}
+    <dl class="faq-accordion">
+      {{ range $faqitem := .section.faqitems }}
+      <dt class="accordion-header">
+        <button class="accordion-trigger">
+          <div class="accordion-title">{{ $faqitem.question }}</div>
+          <div class="accordion-icon icon-plus"></div>
+        </button>
+      </dt>
+      <dd class="accordion-panel">
+        <div class="accordion-content">
+          {{ partial "markdownify-block" $faqitem.answer }}
+        </div>
+      </dd>
+      {{ end }}
+    </dl><!-- .faq-accordion -->
+    {{ end }}
+  </div><!-- .inner-small -->
+</section><!-- .block -->

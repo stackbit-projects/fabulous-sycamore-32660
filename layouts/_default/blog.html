@@ -1,0 +1,47 @@
+{{ define "content" }}
+
+<div class="outer">
+  <div class="inner">
+
+    <div class="post-feed">
+      {{ $display_posts := ((.Site.GetPage "section" "/posts").Pages).ByDate.Reverse }}
+      {{ range $post := $display_posts }}
+      <article class="post post-card">
+        <div class="post-card-inside">
+          {{ if $post.Params.thumb_img_path }}
+          <a class="post-card-thumbnail" href="{{ $post.URL }}">
+            <img class="thumbnail" src="{{ $post.Params.thumb_img_path | relURL }}" alt="{{ $post.Params.title }}" />
+          </a>
+          {{ end }}
+          <div class="post-card-content">
+            <header class="post-header">
+              <h2 class="post-title"><a href="{{ $post.URL }}" rel="bookmark">{{ $post.Params.title }}</a></h2>
+            </header><!-- .post-header -->
+            <div class="post-excerpt">
+              <p>{{ $post.Params.excerpt }}</p>
+            </div>
+            <footer class="post-meta">
+              <time class="published">
+                </time>
+            </footer>
+          </div><!-- post-card-content -->
+        </div><!-- .post-card-inside -->
+      </article><!-- .post -->
+      {{ end }}
+    </div><!-- .post-feed -->
+
+    <!-- Pagination TBD -->
+    <!--
+    <nav class="pagination">
+      <div class="nav-links">
+        <a class="newer-posts button secondary" href="#"><span class="icon-arrow-left" aria-hidden="true"></span> Previous</a>
+        <span class="page-number">Page X of Y</span>
+        <a class="older-posts button secondary" href="#">Next <span class="icon-arrow-right" aria-hidden="true"></span></a>
+      </div>
+    </nav>
+    -->
+
+  </div><!-- .inner -->
+</div><!-- .outer-->
+
+{{ end }}

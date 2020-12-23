@@ -1,0 +1,5 @@
+<p class="block-buttons">
+  {{ range $action := .actions }}
+  <a href="{{ $action.url | relURL }}" class="button secondary">{{ $action.label }}</a>
+  {{ end }}
+</p>
